@@ -6,6 +6,10 @@ from . import BasePage
 
 class LoginPage(BasePage):
 
+    """"
+    This class encapsulates the site's Sign in page and operations carried out on it
+    """
+
     def __init__(self, driver):
         super().__init__(driver)
         self.username = "testautomationmfs@gmail.com"
@@ -15,6 +19,9 @@ class LoginPage(BasePage):
         self.submit = self.driver.find_element(By.ID, "SubmitLogin")
 
     def signin(self):
+        """
+        Type in the username and password and click the submit button
+        """
         self.email_input.clear()
         self.email_input.send_keys(self.username)
 

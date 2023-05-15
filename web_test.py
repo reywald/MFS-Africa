@@ -11,11 +11,13 @@ from pages.login_page import LoginPage
 
 class AutomationSite():
 
+    """"
+    This class encapsulates the site to scrape and operations carried out on it
+    """
+
     def __init__(self, driver):
         self.driver = driver
         self.url = "http://automationpractice.pl/index.php"
-        # self.home_page = HomePage(driver)
-        # self.login_page = LoginPage(driver)
 
     def open_site(self):
         self.driver.get(self.url)
