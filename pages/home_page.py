@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains as AC
 
 from . import BasePage
 
@@ -37,3 +38,16 @@ class HomePage(BasePage):
         print("{0:<30}{1:>10}".format("Apparel", "Price"))
         for item in sorted_price_list:
             print(f"{item[0].text:<30} {item[1].text:>10}")
+
+    def navigate_to_category(self):
+        """
+        Navigate to the dresses category
+        """
+        women_menu = self.driver.find_element(
+            By.CSS_SELECTOR, "#block_top_menu > ul > li:first-child > a")
+        evening_menu_item = self.driver.find_element(
+            By.CSS_SELECTOR, '#block_top_menu > ul > li:first-child a[title^="Evening"]')
+
+        AC(self.driver).move_to_element(
+            women_menu).click(evening_menu_item).perform()
+        self.wait.until(EC.title_is("Evening Dresses - My Store"))
