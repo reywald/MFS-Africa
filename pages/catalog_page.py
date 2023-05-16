@@ -90,3 +90,12 @@ class CatalogPage(BasePage):
             .release() \
             .perform()
 
+    def view_catalog_product(self):
+        # Hover over a catalog product and click the More button
+        dress_product = self.driver.find_element(
+            By.CSS_SELECTOR, "ul.product_list > li:first-child > .product-container")
+        actions = ActionChains(self.driver)
+        actions.move_to_element(dress_product)
+        more_button = self.driver.find_element(
+            By.CSS_SELECTOR, "a[title='View']")
+        actions.click(more_button)
