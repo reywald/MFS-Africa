@@ -41,6 +41,9 @@ class AutomationSite():
         self.catalog_page.select_color(color="blue")
         # self.catalog_page.set_range("$50.00 - $52.28")
         self.catalog_page.set_range("$16.00 - $30.00")
+        self.catalog_page.view_catalog_product()
+        # sleep(20)
+        
 
     def verify_item_details(self):
         pass
