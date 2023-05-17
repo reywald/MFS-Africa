@@ -8,6 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from pages.catalog_page import CatalogPage
+from pages.product_page import ProductPage
 
 
 class AutomationSite():
@@ -43,7 +44,10 @@ class AutomationSite():
         self.catalog_page.set_range("$16.00 - $30.00")
         self.catalog_page.view_catalog_product()
         # sleep(20)
-        
+
+        self.product_page = ProductPage(self.driver)
+        self.product_page.purchase_product("3", "M", "blue")
+
 
     def verify_item_details(self):
         pass
