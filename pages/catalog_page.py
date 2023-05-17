@@ -14,16 +14,16 @@ class CatalogPage(BasePage):
         super().__init__(driver)
         self.filters = (By.ID, "enabled_filters")
 
-    def select_size(self):
+    def select_size(self, size: str):
         medium_size_option = self.driver.find_element(
-            By.CSS_SELECTOR, "#layered_form a[href$='size-m']")
+            By.CSS_SELECTOR, f"#layered_form a[href$='size-{size}']")
         medium_size_option.click()
         self.wait.until(EC.presence_of_element_located(self.filters))
         # self.wait.until(EC.text_to_be_present_in_element_value((By.CSS_SELECTOR, "#enabled_filters li"), " Size: M "))
 
-    def select_color(self):
+    def select_color(self, color: str):
         pink_color_option = self.driver.find_element(
-            By.CSS_SELECTOR, "#layered_form a[href*='color-pink']")
+            By.CSS_SELECTOR, f"#layered_form a[href*='color-{color}']")
         pink_color_option.click()
         self.wait.until(EC.presence_of_element_located(self.filters))
         # self.wait.until(EC.text_to_be_present_in_element(self.filters, " Color: Pink "))
@@ -50,10 +50,10 @@ class CatalogPage(BasePage):
             offset = -round(self.right_slider_width *
                             (max_price - new_max_price) / (max_price - min_price))
             self._slide(self.right_slider_handle, offset)
-
+            print(f"Slide to ${offset}")
         # if min_price < new_min_price:
         #     offset = round(self.left_slider_width * (new_min_price -
-        #                    min_price) / (max_price - min_price))
+        #                    min_price) / (max_price - min_price), 0)
         #     self._slide(self.left_slider_handle, offset)
         self.wait.until(EC.presence_of_element_located(self.filters))
 

@@ -35,11 +35,12 @@ class AutomationSite():
         self.home_page.get_bestsellers()
 
     def add_item_to_cart(self):
-        self.home_page.navigate_to_category()
+        self.home_page.navigate_to_category(menu_label="Summer")
         self.catalog_page = CatalogPage(self.driver)
-        self.catalog_page.select_size()
-        self.catalog_page.select_color()
-        self.catalog_page.set_range("$50.00 - $52.28")
+        self.catalog_page.select_size(size="m")
+        self.catalog_page.select_color(color="blue")
+        # self.catalog_page.set_range("$50.00 - $52.28")
+        self.catalog_page.set_range("$16.00 - $30.00")
 
     def verify_item_details(self):
         pass
